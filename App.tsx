@@ -14,10 +14,13 @@ import Support from './src/pages/Support';
 import About from './src/pages/About';
 import NotFound from './src/pages/NotFound';
 
+// 👇 This is the important part
+const basename = import.meta.env.BASE_URL.replace(/\/$/, '');
+
 const App: React.FC = () => {
   return (
     <Theme appearance="light" radius="large" scaling="100%">
-      <Router>
+      <Router basename={basename}>
         <main className="min-h-screen">
           <Routes>
             <Route path="/" element={<Home />} />
@@ -29,6 +32,7 @@ const App: React.FC = () => {
             <Route path="/about" element={<About />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+
           <ToastContainer
             position="top-right"
             autoClose={3000}
